@@ -1,0 +1,62 @@
+.redactor_editor .key {
+    padding: 3px;
+    color: #FFF;
+    background: #4298D2;
+    border-radius: 3px;
+}
+
+.suggestions {
+    position: absolute; 
+    width: 300px; 
+    background: #FFF; 
+    display: none;
+    border: 1px solid #EEE !important;
+    border-top: none;
+    box-shadow: 1px 3px 10px 1px #F5F5F5;
+}
+    .suggestions ul,
+    .suggestions input,
+    .suggestions button {
+        border: none !important;
+        box-shadow: none !important;
+        border-radius: 0px !important;
+    }
+    
+    .suggestions ul {
+        width: 300px;
+        list-style: none; 
+        margin: 0px; 
+        margin-left: -1px;
+        padding: 10px;
+        border: 1px solid #EEE !important;
+    }
+        .suggestions ul li {
+            border-bottom: 1px solid #EEE;
+            padding: 5px 0px 2px 0px;
+        }
+        .suggestions ul li:last-child {
+            border: none;
+        }
+            .suggestions ul li,
+            .suggestions ul li a {
+                font-size: 12px
+            }
+            
+    .suggestions .input-group-btn button {
+        height: 34px;
+    }
+    
+    .suggestions .result {
+            display: none;
+    }
+        .suggestions .result li img {
+            padding-right: 5px
+        }
+        
+        .suggestions .result li {
+            padding: 5px;
+            cursor: pointer;
+        }
+        .suggestions .result li:hover {
+            background: #F5F5F5
+        }

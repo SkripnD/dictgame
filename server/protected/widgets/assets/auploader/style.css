@@ -1,0 +1,36 @@
+.auploader .form-group {
+    margin: 0px;
+}
+
+.auploader .js-browse {
+    position: relative;
+    overflow: hidden;
+}
+    .auploader .js-upload { padding-top: 5px }
+    .auploader .js-upload .progress { margin-bottom: 5px }
+    
+    .auploader .js-browse input {
+        top: 0px;
+        right: 0px;
+        left: -3px;
+        height: 35px;
+        z-index: 2;
+        position: absolute;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+        cursor: pointer;
+    }
+    
+    .auploader img {
+        max-width: 300px;
+        height: auto;
+    }
+    
+    .auploader .cropper {
+        margin-top: 10px;
+    }
+    
+    .auploader .cropper-control {
+        display: none;
+    }
