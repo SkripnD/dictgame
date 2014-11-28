@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>yandex_key</key>
+	<string>trnsl.1.1.20141125T163026Z.f52618a22055e58e.ddfb261b3fd157c9439e698932ec55cd7b7ca975</string>
+	<key>yandex_url</key>
+	<string>https://translate.yandex.net/api/v1.5/tr.json</string>
+</dict>
+</plist>
