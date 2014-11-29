@@ -100,6 +100,7 @@
 - (void) interfaceGameModeAndStartGame
 {
     [_startIndicator startAnimating];
+    [_scroll_questions setContentOffset:CGPointMake(0, 0)];
     [UIView animateWithDuration:0.2 animations:^(){
         [_welcomeView setAlpha: 0];
         [_startButton setAlpha: 0];
@@ -207,6 +208,7 @@
 
 - (IBAction)repeatButtonClick:(id)sender
 {
+    [self interfaceGameModeAndStartGame];
 }
 
 - (IBAction)changeLanguageButtonClick:(id)sender
