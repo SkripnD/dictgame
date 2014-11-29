@@ -49,7 +49,6 @@
     // First view with language title and start button
     [_welcomeView setFrame: self.view.bounds];
     [_welcomeLabel setFrame: CGRectMake(0, _welcomeLabel.frame.origin.y, self.view.frame.size.width, _welcomeLabel.frame.size.height)];
-    
     [_welcomeLabel setFontSize: 34];
     [_welcomeLabel setText: _langInfo[@"full"]];
     
@@ -60,12 +59,16 @@
     [_cancelButton setFrame: CGRectMake(0, _cancelButton.frame.origin.y, self.view.frame.size.width, _cancelButton.frame.size.height)];
     [_cancelButton setAlpha: 0];
     
-    
     [_startIndicator setFrame: [Helpers centerFrame:_startIndicator.frame inFrame:self.view.frame]];
     
+    
+    [_resultView setFrame: self.view.bounds];
+    [_resultLabel setFrame: CGRectMake(0, _resultLabel.frame.origin.y, self.view.frame.size.width, _resultLabel.frame.size.height)];
+    [_resultLabel setFontSize: 25];
+    [_resultView setAlpha:0];
+
     [self interfaceDummyMode];
     
-    rightAnswersCount = failAnswersCount = 0;
     
 }
 
@@ -74,6 +77,7 @@
     [UIView animateWithDuration:0.2 animations:^(){
         [_welcomeView setAlpha: 0];
         [_startButton setAlpha: 0];
+        [_resultView  setAlpha: 0];
     } completion:^(BOOL completed){
         WordType randomType = (WordType) (arc4random() % (int) WordTypeAdjective);
         // Get words for random part of speech
@@ -84,22 +88,18 @@
     [_startIndicator startAnimating];
 }
 
-- (IBAction)cancelButtonClick:(id)sender
-{
-    [self cancelGame];
-}
 
 - (void) startGameWithWords: (NSArray *) _words
 {
     words = _words;
+    rightAnswersCount = failAnswersCount = 0;
+
     [self interfaceGameMode];
     [self constructQuestionsView];
 }
 
 - (void) cancelGame
 {
-    
-    
     [UIView animateWithDuration:0.2 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut
      animations:^(){
          [_cancelButton setAlpha: 0];
@@ -133,27 +133,42 @@
     
 }
 
+- (void) interfaceResultMode
+{
+    [_resultLabel setText:[NSString stringWithFormat:@"Вы ответили правильно на %ld вопросов из %lu и набрали %ld очков", (long)rightAnswersCount,[words count]/3, rightAnswersCount * 10]];
+    [self.view bringSubviewToFront: _resultView];
+    [UIView animateWithDuration:0.2 animations:^(){
+        [self.navigationItem.titleView setAlpha: 0];
+        [_scroll_questions setAlpha: 0];
+        [_welcomeView setAlpha: 0];
+        [_cancelButton setAlpha: 0];
+        [_resultView setAlpha: 1];
+    } completion:^(BOOL completed){
+    }];
+}
+
 - (void) constructQuestionsView
 {
     questionsViews = [[NSMutableArray alloc] init];
     NSMutableArray * wordsForQuestionView = [[NSMutableArray alloc] init];
     NSInteger questionNumber = 1;
-    
+ 
     for (int i = 1; i <= [words count]; i++) {
         [wordsForQuestionView addObject:words[i-1]];
         if (i%3 == 0) {
             QuestionView * view = [[[NSBundle mainBundle] loadNibNamed:@"QuestionView" owner:self options:nil] firstObject];
-            view.number = questionNumber++;
             [view setWords: wordsForQuestionView];
-            [questionsViews addObject:view];
             [view setDelegate:self];
+            view.number = questionNumber++;
+            [questionsViews addObject:view];
+
             wordsForQuestionView = [[NSMutableArray alloc] init];
         }
     }
     
     CGFloat xOffset = 0;
     for (QuestionView * view in questionsViews) {
-        [view setFrame: CGRectOffset(view.frame, xOffset, 0)];
+        [view setFrame: CGRectOffset(self.view.bounds, xOffset, 0)];
         xOffset += view.frame.size.width;
         [_scroll_questions addSubview: view];
     }
@@ -178,12 +193,24 @@
 
 - (void) testComplete
 {
-    
+    [self interfaceResultMode];
 }
 
 - (void) notAnsweredQuestionCount
 {
     
+}
+
+#pragma mark Button actions
+- (IBAction)cancelButtonClick:(id)sender
+{
+    [self cancelGame];
+}
+
+- (IBAction)repeatButtonClick:(id)sender {
+}
+
+- (IBAction)changeLanguageButtonClick:(id)sender {
 }
 
 #pragma mark ScrollView methods

@@ -22,6 +22,11 @@
 
 @property (strong, nonatomic) NSDictionary * langInfo;
 
+@property (strong, nonatomic) IBOutlet UIView *resultView;
+@property (strong, nonatomic) IBOutlet DSLabel *resultLabel;
+@property (strong, nonatomic) IBOutlet DSButton *repeatButton;
+@property (strong, nonatomic) IBOutlet DSButton *changeLanguageButton;
+
 @property (strong, nonatomic) IBOutlet UIView   * welcomeView;
 @property (strong, nonatomic) IBOutlet DSLabel  * welcomeLabel;
 @property (strong, nonatomic) IBOutlet DSButton * startButton;
@@ -29,5 +34,7 @@
 @property (strong, nonatomic) IBOutlet UIActivityIndicatorView * startIndicator;
 - (IBAction)startButtonClick:(id)sender;
 - (IBAction)cancelButtonClick:(id)sender;
+- (IBAction)repeatButtonClick:(id)sender;
+- (IBAction)changeLanguageButtonClick:(id)sender;
 
 @end

@@ -48,20 +48,45 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cs0-45-d9m" customClass="DSButton">
-                                <rect key="frame" x="0.0" y="511" width="375" height="59"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Отменить">
-                                    <color key="titleColor" red="1" green="0.13634943953590739" blue="0.13383646288416129" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <action selector="cancelButtonClick:" destination="hve-a8-460" eventType="touchUpInside" id="SRf-z4-moh"/>
-                                </connections>
-                            </button>
-                            <view hidden="YES" contentMode="scaleAspectFill" id="ABb-ic-sTP" userLabel="Welcome view">
-                                <rect key="frame" x="-200" y="-34" width="414" height="736"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleAspectFill" id="UGf-bx-n5U" userLabel="Result View">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" adjustsFontSizeToFit="NO" id="9El-e8-NW4" customClass="DSLabel">
+                                        <rect key="frame" x="0.0" y="165" width="375" height="100"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b7w-pI-tYK" customClass="DSButton">
+                                        <rect key="frame" x="13" y="324" width="191" height="59"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Повторить">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="repeatButtonClick:" destination="hve-a8-460" eventType="touchUpInside" id="l3s-Zi-Wth"/>
+                                            <action selector="startButtonClick:" destination="hve-a8-460" eventType="touchUpInside" id="phW-Nz-1MS"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qvy-3W-NLT" customClass="DSButton">
+                                        <rect key="frame" x="184" y="324" width="183" height="59"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" title="Изменить язык">
+                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="changeLanguageButtonClick:" destination="hve-a8-460" eventType="touchUpInside" id="f3c-Lh-qYj"/>
+                                            <action selector="startButtonClick:" destination="hve-a8-460" eventType="touchUpInside" id="egR-CW-APW"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                            <view contentMode="scaleAspectFill" id="ABb-ic-sTP" userLabel="Welcome view">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="lda-Dq-2Cs" customClass="DSLabel">
                                         <rect key="frame" x="0.0" y="165" width="375" height="100"/>
@@ -87,46 +112,27 @@
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
-                            <view contentMode="scaleAspectFill" id="UGf-bx-n5U" userLabel="Result View">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="cs0-45-d9m" customClass="DSButton">
+                                <rect key="frame" x="0.0" y="511" width="375" height="59"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" id="9El-e8-NW4" customClass="DSLabel">
-                                        <rect key="frame" x="0.0" y="53" width="375" height="100"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="b7w-pI-tYK" customClass="DSButton">
-                                        <rect key="frame" x="13" y="280" width="191" height="59"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Повторить">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="startButtonClick:" destination="hve-a8-460" eventType="touchUpInside" id="phW-Nz-1MS"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Qvy-3W-NLT" customClass="DSButton">
-                                        <rect key="frame" x="184" y="280" width="183" height="59"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <state key="normal" title="Изменить язык">
-                                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="startButtonClick:" destination="hve-a8-460" eventType="touchUpInside" id="egR-CW-APW"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                                <state key="normal" title="Отменить">
+                                    <color key="titleColor" red="1" green="0.13634943953590739" blue="0.13383646288416129" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonClick:" destination="hve-a8-460" eventType="touchUpInside" id="SRf-z4-moh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="cancelButton" destination="cs0-45-d9m" id="d2M-yn-0ox"/>
+                        <outlet property="changeLanguageButton" destination="Qvy-3W-NLT" id="nws-ms-SjP"/>
+                        <outlet property="repeatButton" destination="b7w-pI-tYK" id="4oW-6C-GgI"/>
+                        <outlet property="resultLabel" destination="9El-e8-NW4" id="al9-86-kwu"/>
+                        <outlet property="resultView" destination="UGf-bx-n5U" id="eAF-8R-Q5h"/>
                         <outlet property="startButton" destination="SqA-R7-OcY" id="13C-ZZ-hq4"/>
                         <outlet property="startIndicator" destination="Q4d-Md-Nv5" id="nhe-d4-gBm"/>
                         <outlet property="welcomeLabel" destination="lda-Dq-2Cs" id="CwM-7j-2nI"/>

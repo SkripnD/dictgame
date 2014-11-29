@@ -16,6 +16,15 @@
 @synthesize questionStatus;
 @synthesize number;
 
+
+- (void) willMoveToSuperview:(UIView *)newSuperview
+{
+    [_titleLabel setFrame: CGRectMake(0, _titleLabel.frame.origin.y, self.frame.size.width, _titleLabel.frame.size.height)];
+    [_firstButton setFrame: CGRectMake(0, _firstButton.frame.origin.y, self.frame.size.width, _firstButton.frame.size.height)];
+    [_secondButton setFrame: CGRectMake(0, _secondButton.frame.origin.y, self.frame.size.width, _secondButton.frame.size.height)];
+    [_thirdButton setFrame: CGRectMake(0, _thirdButton.frame.origin.y, self.frame.size.width, _thirdButton.frame.size.height)];
+}
+
 - (void) setWords: (NSArray *) _words
 {
     words = _words;
@@ -36,6 +45,7 @@
     [_titleLabel setFontSize: 28];
     
     
+
     answerButtons = [NSArray arrayWithObjects:_firstButton, _secondButton, _thirdButton, nil];
     NSMutableArray * shuffleWords = [NSMutableArray arrayWithArray: words];
     [shuffleWords shuffle];
