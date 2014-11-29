@@ -2,14 +2,6 @@
 
 class IndexController extends FrontController
 {
-    public function actionParse()
-    {
-        $parser = new Parser();
-        $parser->parseVerbs();
-        $parser->parseNouns();
-        $parser->parseAdverbs();
-        $parser->parseAdjectives();
-    }
 
     public function actionVerbs($count = 3)
     {
