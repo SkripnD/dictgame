@@ -74,18 +74,7 @@
 
 - (IBAction)startButtonClick:(id)sender
 {
-    [UIView animateWithDuration:0.2 animations:^(){
-        [_welcomeView setAlpha: 0];
-        [_startButton setAlpha: 0];
-        [_resultView  setAlpha: 0];
-    } completion:^(BOOL completed){
-        WordType randomType = (WordType) (arc4random() % (int) WordTypeAdjective);
-        // Get words for random part of speech
-        [[Translate shared] getWordsWithTranslation:_langInfo[@"abb"] forType:randomType count:30 onSuccess:^(NSArray * result){
-            [self startGameWithWords: result];
-        }];
-    }];
-    [_startIndicator startAnimating];
+    [self interfaceGameModeAndStartGame];
 }
 
 
@@ -94,7 +83,6 @@
     words = _words;
     rightAnswersCount = failAnswersCount = 0;
 
-    [self interfaceGameMode];
     [self constructQuestionsView];
 }
 
@@ -109,13 +97,22 @@
      }];
 }
 
-- (void) interfaceGameMode
+- (void) interfaceGameModeAndStartGame
 {
+    [_startIndicator startAnimating];
     [UIView animateWithDuration:0.2 animations:^(){
+        [_welcomeView setAlpha: 0];
+        [_startButton setAlpha: 0];
+        [_resultView  setAlpha: 0];
         [self changePageNumber: 1];
         [self.navigationItem.titleView setAlpha: 1];
         [self.navigationItem setHidesBackButton: YES animated:NO];
     } completion:^(BOOL completed){
+        WordType randomType = (WordType) (arc4random() % (int) WordTypeAdjective);
+        // Get words for random part of speech
+        [[Translate shared] getWordsWithTranslation:_langInfo[@"abb"] forType:randomType count:30 onSuccess:^(NSArray * result){
+            [self startGameWithWords: result];
+        }];
     }];
 }
 
@@ -202,15 +199,19 @@
 }
 
 #pragma mark Button actions
+
 - (IBAction)cancelButtonClick:(id)sender
 {
     [self cancelGame];
 }
 
-- (IBAction)repeatButtonClick:(id)sender {
+- (IBAction)repeatButtonClick:(id)sender
+{
 }
 
-- (IBAction)changeLanguageButtonClick:(id)sender {
+- (IBAction)changeLanguageButtonClick:(id)sender
+{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark ScrollView methods
