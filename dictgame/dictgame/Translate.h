@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define wordServerAddr @"http://dict.dev"
+#define wordServerAddr @"http://104.131.16.61"
 
 typedef enum {
     WordTypeVerb = 0,

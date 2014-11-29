@@ -82,19 +82,14 @@
 {
     words = _words;
     rightAnswersCount = failAnswersCount = 0;
-
+    [self changePageNumber: 1];
+    [self.navigationItem.titleView setAlpha: 1];
     [self constructQuestionsView];
 }
 
 - (void) cancelGame
 {
-    [UIView animateWithDuration:0.2 delay:0.1 options:UIViewAnimationOptionCurveEaseInOut
-     animations:^(){
-         [_cancelButton setAlpha: 0];
-         [_scroll_questions setAlpha: 0];
-     } completion:^(BOOL finished) {
-         [self interfaceDummyMode];
-     }];
+    [self interfaceDummyMode];
 }
 
 - (void) interfaceGameModeAndStartGame
@@ -105,8 +100,6 @@
         [_welcomeView setAlpha: 0];
         [_startButton setAlpha: 0];
         [_resultView  setAlpha: 0];
-        [self changePageNumber: 1];
-        [self.navigationItem.titleView setAlpha: 1];
         [self.navigationItem setHidesBackButton: YES animated:NO];
     } completion:^(BOOL completed){
         WordType randomType = (WordType) (arc4random() % (int) WordTypeAdjective);
@@ -121,8 +114,11 @@
 {
     [self.view bringSubviewToFront: _welcomeView];
     [UIView animateWithDuration:0.2 animations:^(){
+        [_cancelButton setAlpha: 0];
+        [_scroll_questions setAlpha: 0];
         [self.navigationItem setHidesBackButton:NO];
-        [self.navigationItem.titleView setAlpha: 0];
+        [self.navigationItem.titleView setAlpha:0];
+        [self.navigationItem setTitle:@""];
         [_welcomeView setAlpha: 1];
         [_startButton setAlpha: 1];
         [_startIndicator stopAnimating];
