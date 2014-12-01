@@ -1,5 +1,6 @@
-Server installation
-========
+Dev server - 104.131.16.61. 
+
+## Local server installation
 
 * Run **composer install**
 * Run **npm install**
