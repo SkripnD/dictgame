@@ -28,7 +28,7 @@
 @end
 
 @interface Helpers : NSObject
-
++ (CGRect) changeY: (CGFloat) y forFrame:(CGRect) frame;
 + (CGRect)centerFrame: (CGRect) frame inFrame: (CGRect) inframe;
 
 @end

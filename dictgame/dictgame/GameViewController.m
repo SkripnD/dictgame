@@ -70,6 +70,9 @@
     [self interfaceDummyMode];
     
     
+    _cancelButton.frame = [Helpers changeY:self.view.frame.size.height - _cancelButton.frame.size.height - 20 forFrame:_cancelButton.frame];
+    
+    
 }
 
 - (IBAction)startButtonClick:(id)sender
