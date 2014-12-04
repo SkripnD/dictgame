@@ -33,8 +33,6 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    self.navigationItem.backBarButtonItem.title = @"Назад";
-
     [self initializeWelcomeView];
 }
 
@@ -95,7 +93,6 @@
             VKRequest * postReq = [[VKApi wall] post:@{VK_API_MESSAGE : text}];
             postReq.attempts = 10;
         [postReq executeWithResultBlock:^(VKResponse * response) {
-            NSLog(@"%@", response);
         } errorBlock:^(NSError * error) {
 #warning add error handler
             if (error.code != VK_API_ERROR) {
@@ -199,7 +196,6 @@
 
 - (void) changePageNumber: (NSInteger) page
 {
-   // NSLog(@"%lu", [words count]);
    self.title = [NSString stringWithFormat:@"%ld из %u", (long)page, [words count]/3];
 }
 
@@ -304,7 +300,7 @@
 
 -(void) vkSdkUserDeniedAccess:(VKError*) authorizationError
 {
-    NSLog(@"EEEEEE %@", authorizationError);
+    
 }
 
 - (void) vkSdkShouldPresentViewController:(UIViewController *)controller
