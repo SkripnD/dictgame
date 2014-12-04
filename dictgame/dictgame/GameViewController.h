@@ -10,8 +10,10 @@
 #import "DSLabel.h"
 #import "DSButton.h"
 #import "QuestionView.h"
+#import "VKSdk.h"
 
-@interface GameViewController : UIViewController <UIScrollViewDelegate, QuestionViewDelgate>
+
+@interface GameViewController : UIViewController <UIScrollViewDelegate, QuestionViewDelgate, VKSdkDelegate>
 {
     UIScrollView   * _scroll_questions;
     NSMutableArray * questionsViews;
@@ -26,6 +28,7 @@
 @property (strong, nonatomic) IBOutlet DSLabel *resultLabel;
 @property (strong, nonatomic) IBOutlet DSButton *repeatButton;
 @property (strong, nonatomic) IBOutlet DSButton *changeLanguageButton;
+@property (strong, nonatomic) IBOutlet DSButton *shareButton;
 
 @property (strong, nonatomic) IBOutlet UIView   * welcomeView;
 @property (strong, nonatomic) IBOutlet DSLabel  * welcomeLabel;
@@ -36,5 +39,6 @@
 - (IBAction)cancelButtonClick:(id)sender;
 - (IBAction)repeatButtonClick:(id)sender;
 - (IBAction)changeLanguageButtonClick:(id)sender;
+- (IBAction)shareButtonClick:(id)sender;
 
 @end

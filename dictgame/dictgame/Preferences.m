@@ -56,4 +56,25 @@
 {
     return (NSString *)[self getValue:@"yandex_url"];
 }
+
+- (NSString *) getVkId
+{
+  return (NSString *)[self getValue:@"vk_id"];
+}
+
+- (NSString *) getVkKey
+{
+    return (NSString *)[self getValue:@"vk_key"];
+}
+
+- (void) setVkToken:(VKAccessToken *)token
+{
+    [self setValue:[token accessToken] forKey:@"vk_token"];
+}
+
+- (NSString *) getVkTokenString
+{
+    return [self getValue:@"vk_token"];
+}
+
 @end

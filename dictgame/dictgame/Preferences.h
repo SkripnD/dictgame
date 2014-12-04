@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "VKSdk.h"
 
 @interface Preferences : NSObject
 
@@ -15,6 +16,11 @@
 - (id) getValue: (NSString *) key;
 - (void) setValue: (id) value forKey: (NSString *) key;
 
+- (void) setVkToken:(VKAccessToken *) token;
+- (NSString *) getVkTokenString;
+
 - (NSString *) getYandexKey;
 - (NSString *) getYandexUrl;
+- (NSString *) getVkId;
+- (NSString *) getVkKey;
 @end

@@ -94,7 +94,7 @@
 
     AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager];
     [manager GET:url parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
-       
+        NSLog(@"%@", responseObject);
         NSArray * translated = [self parseTranslatedText:responseObject[@"text"][0]];
         NSMutableArray * result     = [[NSMutableArray alloc] init];
         for (int i = 0; i < [array count]; i++) {

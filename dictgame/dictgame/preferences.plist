@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>vk_key</key>
+	<string>Ue0zjgUp5PWNO29rVjxH</string>
+	<key>vk_id</key>
+	<string>4663458</string>
 	<key>yandex_key</key>
 	<string>trnsl.1.1.20141125T163026Z.f52618a22055e58e.ddfb261b3fd157c9439e698932ec55cd7b7ca975</string>
 	<key>yandex_url</key>

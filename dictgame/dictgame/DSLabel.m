@@ -29,7 +29,10 @@
 
 - (void) willMoveToSuperview:(UIView *)newSuperview
 {
+    
+    self.adjustsFontSizeToFitWidth = NO;
     self.font = [UIFont fontWithName:@"HelveticaNeue-Thin" size:18.0f];
+    [super willMoveToSuperview: newSuperview];
 }
 
 - (void) setFontSize:(CGFloat)fontSize

@@ -10,6 +10,7 @@
 #import "ViewController+DummyImage.h"
 #import "Helpers.h"
 #import "Translate.h"
+#import "Preferences.h"
 
 @interface GameViewController ()
 
@@ -32,8 +33,8 @@
 
 - (void) viewWillAppear:(BOOL)animated
 {
-    //self.navigationItem.hidesBackButton = YES;
-    
+    self.navigationItem.backBarButtonItem.title = @"Назад";
+
     [self initializeWelcomeView];
 }
 
@@ -48,19 +49,15 @@
     
     // First view with language title and start button
     [_welcomeView setFrame: self.view.bounds];
-    [_welcomeLabel setFrame: CGRectMake(0, _welcomeLabel.frame.origin.y, self.view.frame.size.width, _welcomeLabel.frame.size.height)];
     [_welcomeLabel setFontSize: 34];
     [_welcomeLabel setText: _langInfo[@"full"]];
     
+
     [_startButton setFontSize:25];
-    [_startButton setFrame: CGRectMake(0, _startButton.frame.origin.y, self.view.frame.size.width, _startButton.frame.size.height)];
     
     [_cancelButton setFontSize:25];
-    [_cancelButton setFrame: CGRectMake(0, _cancelButton.frame.origin.y, self.view.frame.size.width, _cancelButton.frame.size.height)];
     [_cancelButton setAlpha: 0];
-    
-    [_startIndicator setFrame: [Helpers centerFrame:_startIndicator.frame inFrame:self.view.frame]];
-    
+        
     
     [_resultView setFrame: self.view.bounds];
     [_resultLabel setFrame: CGRectMake(0, _resultLabel.frame.origin.y, self.view.frame.size.width, _resultLabel.frame.size.height)];
@@ -70,15 +67,10 @@
     [self interfaceDummyMode];
     
     
-    _cancelButton.frame = [Helpers changeY:self.view.frame.size.height - _cancelButton.frame.size.height - 20 forFrame:_cancelButton.frame];
     
     
 }
 
-- (IBAction)startButtonClick:(id)sender
-{
-    [self interfaceGameModeAndStartGame];
-}
 
 
 - (void) startGameWithWords: (NSArray *) _words
@@ -93,6 +85,29 @@
 - (void) cancelGame
 {
     [self interfaceDummyMode];
+}
+
+- (void) shareAchievementsVk
+{
+    [VKSdk initializeWithDelegate:self andAppId:[[Preferences shared] getVkId]];
+    if ([VKSdk wakeUpSession]) {
+            NSString * text = [NSString stringWithFormat:@"Вы ответили правильно на %ld вопросов из %lu и набрали %ld очков", (long)rightAnswersCount,[words count]/3, rightAnswersCount * 10];
+            VKRequest * postReq = [[VKApi wall] post:@{VK_API_MESSAGE : text}];
+            postReq.attempts = 10;
+        [postReq executeWithResultBlock:^(VKResponse * response) {
+            NSLog(@"%@", response);
+        } errorBlock:^(NSError * error) {
+#warning add error handler
+            if (error.code != VK_API_ERROR) {
+                [error.vkError.request repeat];
+            }
+            else {
+                NSLog(@"VK error: %@", error);
+            }
+        }];
+    } else {
+        [VKSdk authorize:@[@"email,wall"]];
+    }
 }
 
 - (void) interfaceGameModeAndStartGame
@@ -185,7 +200,7 @@
 - (void) changePageNumber: (NSInteger) page
 {
    // NSLog(@"%lu", [words count]);
-   self.title = [NSString stringWithFormat:@"%ld из %lu", (long)page, [words count]/3];
+   self.title = [NSString stringWithFormat:@"%ld из %u", (long)page, [words count]/3];
 }
 
 - (void) testComplete
@@ -200,6 +215,11 @@
 
 #pragma mark Button actions
 
+- (IBAction)startButtonClick:(id)sender
+{
+    [self interfaceGameModeAndStartGame];
+}
+
 - (IBAction)cancelButtonClick:(id)sender
 {
     [self cancelGame];
@@ -213,6 +233,11 @@
 - (IBAction)changeLanguageButtonClick:(id)sender
 {
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (IBAction)shareButtonClick:(id)sender
+{
+    [self shareAchievementsVk];
 }
 
 #pragma mark ScrollView methods
@@ -268,6 +293,33 @@
 {
     rightAnswersCount++;
     [self nextQuestion];
+}
+
+#pragma mark VkDelegate
+-(void) vkSdkReceivedNewToken:(VKAccessToken*) newToken
+{
+    [[Preferences shared] setVkToken:newToken];
+    [self shareAchievementsVk];
+}
+
+-(void) vkSdkUserDeniedAccess:(VKError*) authorizationError
+{
+    NSLog(@"EEEEEE %@", authorizationError);
+}
+
+- (void) vkSdkShouldPresentViewController:(UIViewController *)controller
+{
+    [self presentViewController:controller animated:YES completion:nil];
+}
+
+- (void) vkSdkNeedCaptchaEnter:(VKError *)captchaError
+{
+    
+}
+
+- (void) vkSdkTokenHasExpired:(VKAccessToken *)expiredToken
+{
+    
 }
 
 @end

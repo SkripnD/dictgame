@@ -20,7 +20,10 @@
 
 - (void) willMoveToSuperview:(UIView *)newSuperview
 {
+    self.titleLabel.adjustsFontSizeToFitWidth = NO;
     self.titleLabel.font = [UIFont fontWithName:@"HelveticaNeue" size:18.0f];
+    [super willMoveToSuperview: newSuperview];
+
 }
 
 - (void) setFontSize:(CGFloat)fontSize
